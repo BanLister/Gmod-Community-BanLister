@@ -6,7 +6,7 @@ This plugin incorporates your community key ```provided by BanLister.com``` and 
 
 ### BanLister Community Key
 
-If your looking to get a Community Key, contact John Snow Gum ```https://JohnSnowGum.xyz```
+If your looking to get a Community Key, contact ```John Snow Gum``` https://JohnSnowGum.xyz
 
 ### Installation
 
