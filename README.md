@@ -10,7 +10,7 @@ If your looking to get a Community Key, contact ```John Snow Gum``` https://John
 
 ### Installation
 
-Download the ZIP file and extract ```gmod_trusted_community``` addon to the addons folder.
+Download the ZIP file and extract ```Gmod-Community-BanLister``` addon to the addons folder.
 
 ### Configuration 
 
