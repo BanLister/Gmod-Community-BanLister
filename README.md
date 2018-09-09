@@ -21,6 +21,7 @@ BanLister.MaxBans = 15 -- If the user has equal to or more recorded bans then th
 BanLister.RangeBans = "month" -- "total" - "month" -- MaxBans Time period.
 BanLister.KickHim = false -- if false, instead of kicking users for MaxBans a message will be sent to staff. If true a message won't be sent and the user will be kicked.
 BanLister.KickReason = "Sorry %s but this server is protected by Ban Lister ensuring a safe community" -- %s = player name
+BanLister.allowedAdmins = {["moderator"] = true, ["mod"] = true} -- alert other ranks that may not be classed as Admin with CAMI admin mods.
 BanLister.AdminMessage = "%s has %d bans in the past month recorded" -- %s = player name
 ```
 
