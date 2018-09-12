@@ -1,3 +1,5 @@
+# Version 1.0
+
 # Ban Lister
 
 Ban Lister gathers bans from trusted secure servers and compiles a free to use public repository.
