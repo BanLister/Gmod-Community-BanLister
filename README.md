@@ -34,3 +34,5 @@ BanLister.allowedAdmins = { -- alert other ranks that may not be classed as Admi
 ### Security
 
 Our developers are committed to ensuring a full working and secure plugin. This plugin connects securely to our database both inserting and retrieving data when necessary. If you have further safety concerns or general questions your more then welcome to come and chat to a developer https://discord.gg/F7FH2nn
+
+###### Developed by [Roni_SL](https://steamcommunity.com/profiles/76561198030676795/)
