@@ -8,7 +8,7 @@ This plugin incorporates your community key ```provided by BanLister.com``` and 
 
 ### BanLister Community Key
 
-If your looking to get a Community Key, visit https://BanLister.com/rip and submit a Forum.
+If your looking to get a Community Key, visit [Ban Lister](https://BanLister.com/rip) and submit a Forum.
 
 ### Installation
 
