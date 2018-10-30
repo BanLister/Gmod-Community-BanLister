@@ -38,7 +38,7 @@ hook.Add("PlayerInitialSpawn", "BanLister.CheckForBans", function(ply)
 	local s = BanLister.RangeBans == "month" and "retrieve-month" or "retrieve"
 
 	http.Fetch(
-		string.format("https://api.banlister.com/%s.php?steamid=%s", s, steamid64),
+		string.format("https://api.banlister.com/%s.php?i=1&api_key=%s&steamid=%s", s, BanLister.API, steamid64),
 		function(body, size, h, code)
 			local data = util.JSONToTable(body)
 
