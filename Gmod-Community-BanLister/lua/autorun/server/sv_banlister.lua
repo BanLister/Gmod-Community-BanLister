@@ -5,8 +5,8 @@ BanLister.MaxBans = 15 -- If the user has equal to or more recorded bans then th
 BanLister.RangeBans = "month" -- "total" - "month" -- MaxBans Time period.
 BanLister.KickHim = false -- if false, instead of kicking users for MaxBans a message will be sent to staff. If true a message won't be sent and the user will be kicked.
 BanLister.KickReason = "Sorry %s but this server is protected by Ban Lister ensuring a safe community" -- %s = player name
-BanLister.AdminMessage = "%s has %d bans in the past month recorded" -- %s = player name
-BanLister.Debug = false -- turn to true to see debug info in console on player join
+BanLister.AdminMessage = "%s has %d bans in the past month recorded" -- %s = player name, %d 
+BanLister.Debug = true -- turn to true to see debug info in console on player join
 BanLister.allowedAdmins = { -- alert other ranks that may not be classed as Admin with CAMI admin mods.
 	["moderator"] = true,
 	["mod"] = true
@@ -14,38 +14,43 @@ BanLister.allowedAdmins = { -- alert other ranks that may not be classed as Admi
 --DO NOT MODIFY PAST THIS POINT--
 
 function BanLister:BanHandler(steamid64, reason, length)
-	http.Post(
-		"https://api.banlister.com/insert.php",
-		{
-			steamid = steamid64,
-			reason = reason,
+	HTTP({
+		failed = function(e)
+			print("[BanLister] API FAILED WITH STATUS: "..e)
+		end,
+		success = function(code, body, headers)
+			print(code)
+			print(body)
+		end,
+		method = "GET",
+		url = "https://api.banlister.com/insert.php",
+		parameters = {
+			steamid = tostring(steamid64),
+			reason = tostring(reason),
 			length = tostring(length),
 			key = BanLister.API,
 			game_id = "4000" -- gmod id
 		},
-		function(result)
-			--print(result)
-		end,
-		function(e)
-			--print("[BanLister] API FAILED WITH STATUS: "..e)
-		end
-	)
+		type = "application/json"
+	})
 end
 
 hook.Add("PlayerInitialSpawn", "BanLister.CheckForBans", function(ply)
 	local steamid64 = ply:SteamID64()
 
 	local s = BanLister.RangeBans == "month" and "retrieve-month" or "retrieve"
-
+	local str = string.format("https://api.banlister.com/%s.php?i=1&api_key=%s&steamid=%s", s, BanLister.API, steamid64)
+	print(str)
 	http.Fetch(
-		string.format("https://api.banlister.com/%s.php?i=1&api_key=%s&steamid=%s", s, BanLister.API, steamid64),
+		str,
 		function(body, size, h, code)
+			print(body)
 			local data = util.JSONToTable(body)
 
-			local count = #data -- use the length operator when its numerically indexed (i believe in this case this is). table.Count is good for sequentially
+			local count = istable(data) and #data or 0 -- use the length operator when its numerically indexed (i believe in this case this is). table.Count is good for sequentially
 
 			if BanLister.Debug then
-				PrintTable(data)
+				if istable(data) then PrintTable(data) end
 				print("Bans count: "..count)
 			end
 
