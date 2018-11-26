@@ -54,7 +54,7 @@ hook.Add("PlayerInitialSpawn", "BanLister.CheckForBans", function(ply)
 				print("Bans count: "..count)
 			end
 
-			if count >= BanLister.MaxBans then return end
+			if count <= BanLister.MaxBans then return end
 
 			local name = ply.SteamName and ply:SteamName() or ply:Name()
 			if BanLister.KickHim then
